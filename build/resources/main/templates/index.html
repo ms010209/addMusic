@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>노래 등록 CRUD</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+<div class="container">
+    <h1>노래 등록 CRUD</h1>
+
+    <!-- 노래 추가 폼 -->
+    <form action="/musics/add" method="post">
+        <input type="text" name="singer" placeholder="가수명" required>
+        <input type="text" name="title" placeholder="노래 제목" required>
+        <button type="submit">노래 추가</button>
+    </form>
+
+    <h2>등록된 노래 목록</h2>
+    <div>
+        <ul>
+            <th:block th:each="music : ${musics}">
+                <li>
+                    <h3 th:text="${music.title} + ' - ' + ${music.singer}"></h3>
+                    <p>조회수: <span th:text="${music.views}"></span></p>
+                    <p>좋아요: <span th:text="${music.likes}"></span> | 찜: <span th:text="${music.hearts}"></span></p>
+                    <form action="/musics/update" method="post">
+                        <input type="hidden" name="id" th:value="${music.id}">
+                        <input type="number" name="likes" th:value="${music.likes}" placeholder="좋아요 수">
+                        <input type="number" name="hearts" th:value="${music.hearts}" placeholder="찜 수">
+                        <input type="number" name="views" th:value="${music.views}" placeholder="조회수">
+                        <button type="submit">수정</button>
+                    </form>
+                    <form action="/musics/delete" method="post">
+                        <input type="hidden" name="id" th:value="${music.id}">
+                        <button type="submit">삭제</button>
+                    </form>
+                </li>
+            </th:block>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
