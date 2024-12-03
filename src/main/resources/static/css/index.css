@@ -17,7 +17,7 @@ h1, h2 {
     color: #333;
 }
 
-input {
+input[type="text"], input[type="number"], input[type="file"] {
     padding: 10px;
     margin: 5px 0;
     width: calc(50% - 12px);
@@ -65,4 +65,14 @@ h3 {
 
 form input {
     margin-right: 5px;
+}
+
+audio {
+    width: 100%;
+    margin-top: 10px;
+}
+
+span {
+    color: green;
+    font-weight: bold;
 }
