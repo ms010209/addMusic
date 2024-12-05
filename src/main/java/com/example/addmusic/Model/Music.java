@@ -72,6 +72,6 @@ public class Music {
     }
 
     public void setAudioFilePath(String audioFilePath) {
-        this.filePath = filePath;
+        this.filePath = audioFilePath;
     }
 }

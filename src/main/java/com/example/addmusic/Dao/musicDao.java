@@ -8,5 +8,4 @@ public interface musicDao {
     List<Music> getAllmusics();
     void updateMusic(Music music);
     void deleteMusic(int id);
-
 }
