@@ -26,7 +26,7 @@ public class MP3UploadController {
     @GetMapping("/all")
     public String getAllMusics(Model model) {
         model.addAttribute("musics", musicService.getAllMusics());
-        return "index";
+        return "dashoboard.html"; // index
     }
 
     @PostMapping("/upload/musics/add")

@@ -30,7 +30,7 @@ public class MusicController {
     public String listMusics(Model model) {
         List<Music> musics = musicService.getAllMusics();
         model.addAttribute("musics", musics);
-        return "index";
+        return "dashoboard.html"; // index
     }
 
     @GetMapping("/{id}")
@@ -76,7 +76,6 @@ public class MusicController {
         return "redirect:/musics";
     }
 
-
     @PostMapping("/update")
     public String updateMusic(@RequestParam("id") int id,
                               @RequestParam("singer") String singer,
@@ -84,7 +83,7 @@ public class MusicController {
                               @RequestParam("likes") int likes,
                               @RequestParam("hearts") int hearts,
                               @RequestParam("views") int views,
-                              @RequestParam("audioFilePath") String audioFilePath) {  // 파일 경로 추가
+                              @RequestParam("audioFilePath") String audioFilePath) {
         Music music = new Music(id, singer, title, likes, hearts, views, audioFilePath);
         musicService.updateMusic(music);
         return "redirect:/musics";
