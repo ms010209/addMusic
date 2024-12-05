@@ -5,6 +5,7 @@ import com.example.addmusic.Service.musicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -36,7 +37,7 @@ public class MusicController {
                            RedirectAttributes redirectAttributes) {
         String fileName = mp3File.getOriginalFilename();
         try {
-            Path path = Paths.get("uploads/" + fileName);
+            Path path = Paths.get("/uploads/" + fileName);
             Files.write(path, mp3File.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,4 +67,14 @@ public class MusicController {
         return "redirect:/musics";
     }
 
+    @ControllerAdvice
+    public class GlobalExceptionHandler {
+
+        @ExceptionHandler(MissingServletRequestParameterException.class)
+        public String handleMissingParams(MissingServletRequestParameterException ex, RedirectAttributes redirectAttributes) {
+            String paramName = ex.getParameterName();
+            redirectAttributes.addFlashAttribute("error", paramName + " 파라미터가 누락되었습니다.");
+            return "redirect:/musics";
+        }
+    }
 }

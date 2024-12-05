@@ -27,6 +27,9 @@ public class musicDaoImpl implements musicDao {
         boolean musicFound = false;
         for (Music m : musicList) {
             if (m.getId() == music.getId()) {
+                m.setSinger(music.getSinger());
+                m.setTitle(music.getTitle());
+                m.setAudioFilePath(music.getAudioFilePath());
                 m.setLikes(music.getLikes());
                 m.setHearts(music.getHearts());
                 m.setViews(music.getViews());
@@ -53,6 +56,14 @@ public class musicDaoImpl implements musicDao {
         }
         if (!musicFound) {
             throw new IllegalArgumentException("No music found with id: " + id);
+        }
+    }
+    private void validateMusic(Music music) {
+        if (music.getSinger() == null || music.getSinger().trim().isEmpty()) {
+            throw new IllegalArgumentException("Singer cannot be null or empty");
+        }
+        if (music.getTitle() == null || music.getTitle().trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be null or empty");
         }
     }
 }

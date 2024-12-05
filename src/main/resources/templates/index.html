@@ -35,19 +35,21 @@
                     <!-- MP3 파일 재생 -->
                     <audio controls>
                         <source th:src="@{${music.audioFilePath}}" type="audio/mp3">
-                        Your browser does not support the audio element.
                     </audio>
 
                     <!-- 음악 정보 표시 -->
                     <p>조회수: <span th:text="${music.views}"></span></p>
-                    <p>좋아요: <span th:text="${music.likes}"></span> | 찜: <span th:text="${music.hearts}"></span></p>
+                    <p>좋아요: <span th:text="${music.likes}"></span></p>
+                    <p>찜: <span th:text="${music.hearts}"></span></p>
 
                     <!-- 노래 정보 수정 폼 -->
                     <form action="/musics/update" method="post">
                         <input type="hidden" name="id" th:value="${music.id}">
-                        <input type="number" name="likes" th:value="${music.likes}" placeholder="좋아요 수">
-                        <input type="number" name="hearts" th:value="${music.hearts}" placeholder="찜 수">
-                        <input type="number" name="views" th:value="${music.views}" placeholder="조회수">
+                        <input type="text" name="singer" th:value="${music.singer}" placeholder="가수명" required>
+                        <input type="text" name="title" th:value="${music.title}" placeholder="노래 제목" required >
+                        <input type="number" name="views" th:value="${music.views}" placeholder="조회수" required>
+                        <input type="number" name="likes" th:value="${music.likes}" placeholder="좋아요 수" required>
+                        <input type="number" name="hearts" th:value="${music.hearts}" placeholder="찜 수" required>
                         <button type="submit">수정</button>
                     </form>
 
