@@ -7,16 +7,16 @@ public class Music {
     private int likes;
     private int hearts;
     private int views;
-    private String filePath;
+    private String audioFilePath;
 
-    public Music(int id, String singer, String title, int likes, int hearts, int views, String filePath) {
+    public Music(int id, String singer, String title, int likes, int hearts, int views, String audioFilePath) {
         this.id = id;
         this.singer = singer;
         this.title = title;
         this.likes = likes;
         this.hearts = hearts;
         this.views = views;
-        this.filePath = filePath;
+        this.audioFilePath = audioFilePath;
     }
 
     public int getId() {
@@ -68,10 +68,10 @@ public class Music {
     }
 
     public String getAudioFilePath() {
-        return filePath;
+        return audioFilePath;
     }
 
     public void setAudioFilePath(String audioFilePath) {
-        this.filePath = audioFilePath;
+        this.audioFilePath = audioFilePath;
     }
 }
