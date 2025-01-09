@@ -10,15 +10,10 @@
 <div class="login-container">
     <h2>로그인</h2>
 
-    <!-- 로그인 실패나 성공 메시지 출력 -->
-    <div class="message">
-        <p th:if="${message != null}" th:text="${message}"></p>
-    </div>
-
-    <form method="post" action="/static">
+    <form method="post" action="/">
         <div class="form-group">
             <label for="username">아이디</label>
-            <input type="text" id="username" name="username" required placeholder="아이디를 입력하세요">
+            <input type="email" id="username" name="username" required placeholder="아이디를 입력하세요" autofocus>
         </div>
 
         <div class="form-group">
@@ -26,8 +21,18 @@
             <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요">
         </div>
 
+        <!-- 로그인 실패나 성공 메시지 출력 -->
+        <div class="message">
+            <p th:if="${message != null}" th:text="${message}"></p>
+        </div>
+
         <button type="submit" class="btn-login">로그인</button>
     </form>
+
+    <div class="signup-link">
+        <a href="/signup" class="btn-signup">회원가입</a>
+    </div>
+
 </div>
 </body>
 </html>

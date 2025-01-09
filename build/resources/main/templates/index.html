@@ -3,58 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>노래 등록 CRUD</title>
+    <title>로그인</title>
     <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-<div class="container">
-    <h1>노래 등록 CRUD</h1>
+<div class="login-container">
+    <h2>로그인</h2>
 
-    <form action="/musics/add" method="post" enctype="multipart/form-data">
-        <input type="text" name="singer" placeholder="가수명" required>
-        <input type="text" name="title" placeholder="노래 제목" required>
-        <input type="file" name="mp3File" accept=".mp3" required>
-        <button type="submit">노래 추가</button>
+    <form method="post" action="/">
+        <div class="form-group">
+            <label for="username">아이디</label>
+            <input type="email" id="username" name="username" required placeholder="아이디를 입력하세요" autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요">
+        </div>
+
+        <!-- 로그인 실패나 성공 메시지 출력 -->
+        <div class="message">
+            <p th:if="${message != null}" th:text="${message}"></p>
+        </div>
+
+        <button type="submit" class="btn-login">로그인</button>
     </form>
 
-    <div>
-        <span th:if="${message}" th:text="${message}"></span>
+    <div class="signup-link">
+        <a href="/signup" class="btn-signup">회원가입</a>
     </div>
 
-    <h2>등록된 노래 목록</h2>
-    <div>
-        <ul>
-            <th:block th:each="music : ${musics}">
-                <li>
-                    <h3 th:text="${music.title} + ' - ' + ${music.singer}"></h3>
-
-                    <audio controls>
-                        <source th:src="@{${music.audioFilePath}}" type="audio/mp3">
-                    </audio>
-
-                    <p>조회수: <span th:text="${music.views}"></span></p>
-                    <p>좋아요: <span th:text="${music.likes}"></span></p>
-                    <p>찜: <span th:text="${music.hearts}"></span></p>
-
-                    <form action="/musics/update" method="post">
-                        <input type="hidden" name="id" th:value="${music.id}">
-                        <input type="text" name="singer" th:value="${music.singer}" placeholder="가수명" required>
-                        <input type="text" name="title" th:value="${music.title}" placeholder="노래 제목" required>
-                        <input type="number" name="views" th:value="${music.views}" placeholder="조회수" required>
-                        <input type="number" name="likes" th:value="${music.likes}" placeholder="좋아요 수" required>
-                        <input type="number" name="hearts" th:value="${music.hearts}" placeholder="찜 수" required>
-                        <input type="hidden" name="audioFilePath" th:value="${music.audioFilePath}" required>
-                        <button type="submit">수정</button>
-                    </form>
-
-                    <form action="/musics/delete" method="post">
-                        <input type="hidden" name="id" th:value="${music.id}">
-                        <button type="submit">삭제</button>
-                    </form>
-                </li>
-            </th:block>
-        </ul>
-    </div>
 </div>
 </body>
 </html>

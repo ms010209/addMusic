@@ -11,7 +11,7 @@
     <h1>노래 등록 CRUD</h1>
 
     <form action="/musics/add" method="post" enctype="multipart/form-data">
-        <input type="text" name="singer" placeholder="가수명" required>
+        <input type="text" name="singer" placeholder="가수명" required autofocus>
         <input type="text" name="title" placeholder="노래 제목" required>
         <input type="file" name="mp3File" accept=".mp3" required>
         <button type="submit">노래 추가</button>
